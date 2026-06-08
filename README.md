@@ -38,3 +38,9 @@ The connection key maps the precise 5-tuple signature layer:
 ## Packet Integrity Management
 Header field translation requires live incremental recalculation of Layer 3 and Layer 4 checksum parameters. This prevents the host OS networking engine from invalidating modified packets upon receipt.
 - Helpers used: bpf_l3_csum_replace, bpf_l4_csum_replace
+
+## Stateful Connection Handshake Workflow
+1. Client sends TCP SYN packet -> Hits VIP:8080
+2. eBPF rewrites destination -> Lands at Main/Backup Backend port
+3. Backend returns TCP SYN-ACK -> Handled by egress hook
+4. eBPF masks source back to VIP -> Client receives clean verification handshake
