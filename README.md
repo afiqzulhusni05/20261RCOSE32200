@@ -44,3 +44,8 @@ Header field translation requires live incremental recalculation of Layer 3 and 
 2. eBPF rewrites destination -> Lands at Main/Backup Backend port
 3. Backend returns TCP SYN-ACK -> Handled by egress hook
 4. eBPF masks source back to VIP -> Client receives clean verification handshake
+
+Infrastructure Clean Teardown Rules:
+- De-register active TC filter pipelines from veth hooks
+- Purge kernel array and hash maps to free kernel allocation tables
+- Execute teardown_network.sh to delete virtual namespaces cleanly
