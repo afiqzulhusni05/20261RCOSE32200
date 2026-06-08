@@ -26,3 +26,11 @@ Verification complete. Network ledger traces captured via tcpdump successfully m
 - Subsystem: Linux Traffic Control (TC) Classifier
 - Program Hook Hook Point: SEC("classifier")
 - Kernel Return Actions: TC_ACT_OK (pass packet through natively)
+
+## Stateful Flow Session Tracking Signature
+The connection key maps the precise 5-tuple signature layer:
+1. Client IP Address (Source)
+2. Virtual IP Cluster Destination (VIP)
+3. Client Dynamic Port Allocation
+4. VIP Listening Gateway Port (8080)
+5. Layer 4 Protocol Type (IPPROTO_TCP)
