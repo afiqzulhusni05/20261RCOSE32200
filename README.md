@@ -34,3 +34,7 @@ The connection key maps the precise 5-tuple signature layer:
 3. Client Dynamic Port Allocation
 4. VIP Listening Gateway Port (8080)
 5. Layer 4 Protocol Type (IPPROTO_TCP)
+
+## Packet Integrity Management
+Header field translation requires live incremental recalculation of Layer 3 and Layer 4 checksum parameters. This prevents the host OS networking engine from invalidating modified packets upon receipt.
+- Helpers used: bpf_l3_csum_replace, bpf_l4_csum_replace
